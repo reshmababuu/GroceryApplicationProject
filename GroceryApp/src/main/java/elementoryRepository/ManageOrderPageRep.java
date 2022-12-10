@@ -24,14 +24,21 @@ public class ManageOrderPageRep
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
 	WebElement searchButton;
 	
-	@FindBy(xpath = "//select[@id='pt']")
-	WebElement paymntMode;
 	
-//	public void logIn()
-//{
-//		LoginPageTestcase lptc = new LoginPageTestcase();
-//        lptc.ClickOnSignIn();
-//	}
+	@FindBy(xpath="//input[@id='od']")
+	WebElement orderID;
+	
+	@FindBy(xpath="//button[@class='btn btn-danger btn-fix']")
+	WebElement searchBtn2;
+	
+	@FindBy(xpath="//a[text()='View']")
+	WebElement viewBtn;
+	
+	@FindBy(xpath="//h1[text()='Order Details']")
+	WebElement orderDetails;
+	
+	
+
 	
 
 	public void clickOnManagerOrderpage()
@@ -42,16 +49,26 @@ public class ManageOrderPageRep
 	{
 		searchButton.click();
 	}
-	public void clickOnPaymentMode()
-	{
-		paymntMode.click();
-	}
 	
-	public String getTheSeletedValueOnDropdownList()
+	
+	public void inputOrderIdOnSearchListOrdersPage(String id)
 	{
-		return gu.selectedValueFromDropDown(paymntMode,"Cash on Delivery");
+		orderID.sendKeys(id);
 		
 	}
+	public void clickOnSearchButtonISearchListOrdersPage()
+	{
+		searchBtn2.click();
+	}
+	public void clickOnViewButton()
+	{
+		gu.javaScriptClick(viewBtn, driver);
+	}
+	public String getTextOfOrderDetailspage()
+	{
+		return gu.getElementText(orderDetails);
+	}
+	
 	}
 	
 	

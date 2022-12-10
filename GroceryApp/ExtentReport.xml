@@ -1,0 +1,12 @@
+<suite name="Suite">
+	<test name="Test1">
+		<listeners>
+			<listener class-name="utilitieS.ExtentReport" />
+		</listeners>
+		<parameter name="Browser" value="chrome"></parameter>
+		<classes>
+			<class name="testCases.LoginPageTestcase"></class>
+
+		</classes>
+	</test>
+</suite>

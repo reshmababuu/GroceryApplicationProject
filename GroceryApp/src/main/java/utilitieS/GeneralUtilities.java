@@ -20,6 +20,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import constant.Constant;
+
 public class GeneralUtilities {
 	 WebDriver driver;
 	 public static Properties prop;
@@ -128,6 +130,17 @@ public class GeneralUtilities {
 //			driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
 //		}
 //	}
+	
+	public boolean resetFunction(WebDriver driver,WebElement element,WebElement element2, String str)
+	{
+		 element.sendKeys(str);
+		 element2.click();
+		 String string1 = str;
+		 boolean res;
+		 res = (string1 == null);
+		 System.out.println(Constant.nullMessage +res);
+		 return res;
+	}
 //	
 	
 }

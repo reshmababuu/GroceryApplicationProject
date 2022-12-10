@@ -1,8 +1,10 @@
 package testCases;
 
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import constant.Constant;
 import elementoryRepository.LoginpageRep;
 import elementoryRepository.ManageOrderPageRep;
 
@@ -11,7 +13,7 @@ public class ManageOrderPagetestCases extends BaseClass {
 	ManageOrderPageRep mopr;
 
 	@Test
-	public void verifySelectedValueInTheDropDown() 
+	public void verifyTheBankPaymentModeUsers() 
 	{
 		lpr = new LoginpageRep(driver);
 		mopr = new ManageOrderPageRep(driver);
@@ -22,20 +24,25 @@ public class ManageOrderPagetestCases extends BaseClass {
 		
 			
 		mopr.clickOnManagerOrderpage();
-		
 		mopr.clickONSearchBtnInManagerOrderPage();
+		mopr.inputOrderIdOnSearchListOrdersPage("369");
+		mopr.clickOnSearchButtonISearchListOrdersPage();
+		mopr.clickOnViewButton();
+		String actual = mopr.getTextOfOrderDetailspage();
+		String expected = "Order Details";
 		
-		mopr.clickOnPaymentMode();
-			
-		mopr.getTheSeletedValueOnDropdownList();
+		Assert.assertEquals(actual, expected, Constant.errorMessage);
+		
+		
 
-		String actual = mopr.getTheSeletedValueOnDropdownList();
-		System.out.println(actual);
-		String expect = "COD";
+		
+		
+	
+	
+		
 
-		Assert.assertEquals(actual, expect, "not same");
-		}
 
 	}
+}
 
 
