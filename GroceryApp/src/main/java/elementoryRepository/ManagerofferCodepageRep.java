@@ -15,24 +15,39 @@ import utilitieS.GeneralUtilities;
 public class ManagerofferCodepageRep {
 	WebDriver driver;
 	GeneralUtilities gu = new GeneralUtilities();
-	WebElement text;
+	WebElement elmnt;
 
 	public ManagerofferCodepageRep(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//button[text()='Sign In']")
-	WebElement signIn;
-
-	@FindBy(xpath = "//input[@name='username']")
-	WebElement uName;
-
-	@FindBy(xpath = "//input[@name='password']")
-	WebElement password;
+//	@FindBy(xpath = "//button[text()='Sign In']")
+//	WebElement signIn;
+//
+//	@FindBy(xpath = "//input[@name='username']")
+//	WebElement uName;
+//
+//	@FindBy(xpath = "//input[@name='password']")
+//	WebElement password;
 
 	@FindBy(xpath = "//p[text()='Manage Offer Code']")
 	WebElement managerOffrCode;
+	
+	@FindBy(xpath="//a[@class='btn btn-rounded btn-primary']")
+	WebElement searchBtn;
+	
+	@FindBy(xpath="//input[@class='form-control']")
+	WebElement offerCode;
+	
+	@FindBy(xpath="//button[@class='btn btn-danger btn-fix']")
+	WebElement searchBtn2;
+	
+	@FindBy(xpath="//a[@class='btn btn-rounded btn-warning']")
+	WebElement resetBtn;
+	
+	@FindBy(xpath="//h4[text()='List Offercodes']")
+	WebElement listOrders;
 
 
 
@@ -40,17 +55,41 @@ public class ManagerofferCodepageRep {
 	{
 		managerOffrCode.click();
 	}
+	public void clickOnSearchButton()
+	{
+		searchBtn.click();
+	}
 	
 
-	public void getOfferPercentage() throws InterruptedException {
-		List<WebElement>list1 =driver.findElements(By.xpath("//table//tbody//tr//td[1]"));
+	public String getOfferPercentage(String offrCode) throws InterruptedException {
 		
-		String elementLocator=gu.getTheSearchedValueInDynamicTable(list1, "12304_12_2022_07_58_54", "//table//tbody//tr[\"+(i+1)+\"]//td[2]");
-		text = driver.findElement(By.xpath(elementLocator));
-		String str=text.getText();
+		offerCode.sendKeys(offrCode);
+		searchBtn2.click();
+		List<WebElement> list1= driver.findElements(By.xpath("//table//tbody//tr//td[1]"));
+		for(int i =0;i<list1.size();i++)
+		{
+		String locator = "//table//tbody//tr[" + (i+1) +"]//td[2]"; 
+		elmnt = driver.findElement(By.xpath(locator));
+
+		return gu.getElementText(elmnt);
 		
-		System.out.println(str);
+		}
+		return null;
 		
+	}
+	
+	public String resetFunctionOfTheManageOfferCodePage()
+	{
+		resetBtn.click();
+		return gu.getElementText(listOrders);
+	}
+	
+}
+		
+		
+		
+
+//		
 //		List<WebElement> list1 = driver.findElements(By.xpath("//table//tbody//tr//td[1]"));
 //		gu.thread();
 //		String elementLocator=gu.getTheSearchedValueInDynamicTable(list1, "500", "//table//tbody//tr[\" + (i + 1) + \"]//td[2]");
@@ -59,14 +98,8 @@ public class ManagerofferCodepageRep {
 //				System.out.println(percentage);
 //			
 
-			}
+			
 		
 
 	
-public String verifyThepercentageSame()
-{
-	
-	return gu.getElementText(text);
-	
-}
-}
+

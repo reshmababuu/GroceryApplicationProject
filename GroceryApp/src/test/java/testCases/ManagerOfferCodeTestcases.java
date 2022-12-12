@@ -17,17 +17,37 @@ public class ManagerOfferCodeTestcases extends BaseClass
   {
 	  lpr = new LoginpageRep(driver);
 	  mocp = new ManagerofferCodepageRep(driver);
-	 lpr.inputUserName("admin");
+	  lpr.inputUserName("admin");
 	  lpr.inputPasswrd("admin");
 	  lpr.clickONSigninButton();
 	  mocp.clickOnManagerOfferCodepage();
-	  mocp.getOfferPercentage();
+	  mocp.clickOnSearchButton();
 	  
-	 
-	 String actual =mocp.verifyThepercentageSame();
-	 String expect ="30%";
-	 System.out.println(actual);
-	 Assert.assertEquals(actual, expect,Constant.errorMessage );
+	  String actual=  mocp.getOfferPercentage("500_14_11_2022_11_44_48");
+	  System.out.println(actual);
+	  String expected = "85%";
+	  Assert.assertEquals(actual, expected,Constant.errorMessage );
+  }
+  
+  //reset page
+  @Test
+  public void verifyTheResetFunction()
+  {
+	  lpr = new LoginpageRep(driver);
+	  mocp = new ManagerofferCodepageRep(driver);
+	  lpr.inputUserName("admin");
+	  lpr.inputPasswrd("admin");
+	  lpr.clickONSigninButton();
+	  mocp.clickOnManagerOfferCodepage();
+	  mocp.clickOnSearchButton();
+	  
+	  String actual = mocp.resetFunctionOfTheManageOfferCodePage();
+	  String expected = "List Offercodes";
+	  Assert.assertEquals(actual, expected, Constant.errorMessage);
+	  
+  }
+	
 
-}
+
+
 }

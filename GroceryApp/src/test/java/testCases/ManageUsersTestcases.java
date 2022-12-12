@@ -4,25 +4,28 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import constant.Constant;
+import elementoryRepository.LoginpageRep;
 import elementoryRepository.ManageUsersRep;
 
 public class ManageUsersTestcases extends BaseClass {
 	ManageUsersRep mup;
+	LoginpageRep lpr;
 
 	@Test
 	public void verifyInputedUserStatus()
 	{
 	    mup = new ManageUsersRep(driver);
-		mup.inputUserName("admin");
-		mup.inputPasswrd("admin");
-		mup.clickONSigninButton();
+		lpr = new LoginpageRep(driver);
+		lpr.inputUserName("admin");
+		lpr.inputPasswrd("admin");
+		lpr.clickONSigninButton();
 		mup.clickOnManageUsers();
 		mup.clickOnSearchBtn();
 		mup.inputSelectedUsersName("sree sree");
 		mup.clickOnlastSearchBtn();
-		mup.displayInputeduserStatus();
 		
-		String actual = mup.verifyThetextOfStatus();
+		String actual =mup.displayInputeduserStatus();
+		System.out.println(actual);
 		String expect = "Active";
 		Assert.assertEquals(actual, expect, Constant.errorMessage);
 

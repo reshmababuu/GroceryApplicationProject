@@ -11,7 +11,7 @@ public class AdminUsersPageTestcases extends BaseClass {
  
   AdminUsersPage aup;
 	LoginpageRep lpr;
-	
+	// add new admin
 	@Test(groups= {"High"}, priority=1)
 	  public void addnewAdminInAdminPage() 
 	  {
@@ -33,7 +33,7 @@ public class AdminUsersPageTestcases extends BaseClass {
 		  
 		  
 	  }
-	  
+	  //delete an admin
 	  @Test(groups= {"Medium"}, priority=2)
 	  public void selectedAdmindeletion()
 	  {
@@ -52,7 +52,7 @@ public class AdminUsersPageTestcases extends BaseClass {
 		  String actual = aup.verifyThedeletedAlert();
 		  System.out.println(actual);
 	  }
-		  
+		//reset page  
 		  @Test(groups= {"High"}, priority=1)
 		  public void reSetThePage()
 		  {

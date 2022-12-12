@@ -19,14 +19,6 @@ public class ManageUsersRep
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy(xpath="//button[text()='Sign In']")
-	WebElement signIn;
-
-	@FindBy(xpath = "//input[@name='username']")
-	WebElement uName;
-
-	@FindBy(xpath= "//input[@name='password']")
-	WebElement password;
 	
 	@FindBy(xpath="//p[text()='Manage Users']")
 	WebElement manageUsers;
@@ -40,18 +32,7 @@ public class ManageUsersRep
 	@FindBy(xpath="//button[@class='btn btn-block-sm btn-danger']")
 	WebElement serchbtn2;
 
-	public void inputUserName(String usrname)
-	{
-		uName.sendKeys(usrname);
-	}
-	public void inputPasswrd(String pswrd)
-	{
-		password.sendKeys(pswrd);
-	}
-	public void clickONSigninButton()
-	{
-		signIn.click();
-	}
+	
 	public void clickOnManageUsers()
 	{
 		manageUsers.click();
@@ -69,20 +50,15 @@ public class ManageUsersRep
 		serchbtn2.click();
 	}
 	
-	public void displayInputeduserStatus()
+	public String displayInputeduserStatus()
 	{
 		List<WebElement>list1 =driver.findElements(By.xpath("//table//tbody//tr//td[1]"));
 		
 			String elementLocator=gu.getTheSearchedValueInDynamicTable(list1, "sree sree", "//table//tbody//tr[\"+(i+1)+\"]//td[5]");
 			text = driver.findElement(By.xpath(elementLocator));
-			String str=text.getText();
-			
-			System.out.println(str);
+			return gu.getElementText(text);
 	}
-	public String verifyThetextOfStatus()
-	{
-		return gu.getElementText(text);
-	}
+	
 }
 //}
 //	public String verifyinputtetedUserStatus()
